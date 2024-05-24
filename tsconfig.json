@@ -7,7 +7,6 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": "./dist", // specifies where to output JavaScript code after build.
-    "rootDir": "./src", // specifies where the TypeScript files are located.
-    "baseUrl": "./src" // specifies what is the relative path when including files in the application.
   },
+  "include": ["./src"]
 }
