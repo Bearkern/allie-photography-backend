@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import './connections';
 
 import indexRouter from './routes/index';
 import portfoliosRouter from './routes/portfolios';
