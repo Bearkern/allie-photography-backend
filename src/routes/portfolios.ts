@@ -1,6 +1,5 @@
 import { Router, Request, Response } from 'express';
-import allPortfolios from '../../doc/fakeData/portfolios-all.json';
-import portfolios from '../../doc/fakeData/portfolios-1.json';
+import fs from 'fs'
 
 const router = Router();
 type AllPortfolios = {
@@ -23,20 +22,21 @@ type Portfolios = {
   photos: Photos[],
 }
 
-router.get('/', (req: Request, res: Response) => {
-  const data: AllPortfolios[] = allPortfolios;
+router.get('/', (_, res: Response) => {
+  const data: AllPortfolios[] = JSON.parse(fs.readFileSync('./doc/fakeData/portfolios-all.json', 'utf-8'));
   res.send(data);
 });
 
 router.get('/:pid', (req: Request, res: Response) => {
   const pid = req.params.pid;
-  // const data: Portfolios = portfolios;
-  console.log('pid:', pid);
-  res.send(pid);
+  const data: Portfolios = JSON.parse(fs.readFileSync('./doc/fakeData/portfolios-1.json', 'utf-8'));
+  console.log('data:', data);
+  res.send(data);
 });
 
 router.post('/', (req: Request, res: Response) => {
   const data = req.body;
+  console.log('data.title:', data.title);
   res.send(data)
 });
 
