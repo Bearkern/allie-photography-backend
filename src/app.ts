@@ -5,6 +5,7 @@ import logger from 'morgan';
 import './connections';
 
 import indexRouter from './routes/index';
+import faqsRouter from './routes/faqs';
 import portfoliosRouter from './routes/portfolios';
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
+app.use('/faqs', faqsRouter)
 app.use('/portfolios', portfoliosRouter);
 
 // catch 404 and forward to error handler
