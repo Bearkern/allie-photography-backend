@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const portfoliosSchema = new mongoose.Schema({
-  id: String,
   title: {
     type: String,
     required: [true, '作品集名稱為必填'],
@@ -22,6 +21,8 @@ const portfoliosSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Photos',
   }],
+}, {
+  versionKey: false
 });
 
 const Portfolios = mongoose.model('Portfolios', portfoliosSchema);

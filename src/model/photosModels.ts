@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const photosSchema = new mongoose.Schema({
-  id: String,
   url: {
     type: String,
     required: [true, '照片為必填'],
@@ -12,6 +11,8 @@ const photosSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+}, {
+  versionKey: false
 });
 
 const Photos = mongoose.model('Photos', photosSchema);

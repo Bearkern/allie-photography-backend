@@ -47,6 +47,8 @@ const reservationSchema = new mongoose.Schema({
   remark: {
     type: String
   },
+}, {
+  versionKey: false
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);

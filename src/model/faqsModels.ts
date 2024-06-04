@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const faqsSchema = new mongoose.Schema({
-  id: String,
   category: {
     type: String,
     required: [true, '類別為必填'],
@@ -14,6 +13,8 @@ const faqsSchema = new mongoose.Schema({
     type: String,
     required: [true, '回答為必填'],
   },
+}, {
+  versionKey: false
 });
 
 const Faqs = mongoose.model('Faqs', faqsSchema);

@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const packagesSchema = new mongoose.Schema({
-  id: String,
   title: {
     type: String,
     required: [true, '方案名稱為必填'],
@@ -30,6 +29,8 @@ const packagesSchema = new mongoose.Schema({
     type: [String],
     required: [true, '照片為必填']
   },
+}, {
+  versionKey: false
 });
 
 const Packages = mongoose.model('Packages', packagesSchema);
