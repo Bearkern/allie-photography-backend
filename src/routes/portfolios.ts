@@ -1,43 +1,95 @@
 import { Router, Request, Response } from 'express';
-import fs from 'fs'
+import Portfolios from '../model/portfoliosModels';
+import { ObjectId } from 'mongoose';
 
 const router = Router();
-type AllPortfolios = {
-  id: string,
+
+type AllPortfoliosData = {
+  _id: ObjectId,
   title: string,
 };
 
-type Photos = {
+type PhotosData = {
   url: string,
   title: string,
   description: string,
 }
 
-type Portfolios = {
-  id: string,
+type PortfoliosData = {
+  _id: ObjectId,
   title: string,
   description: string,
-  coverUrl: string,
-  isEnabled: boolean,
-  photos: Photos[],
+  cover_url: string,
+  is_enabled: boolean,
+  photos: PhotosData[],
 }
 
-router.get('/', (_, res: Response) => {
-  const data: AllPortfolios[] = JSON.parse(fs.readFileSync('./doc/fakeData/portfolios-all.json', 'utf-8'));
-  res.send(data);
+router.get('/', async (_, res: Response) => {
+  const portfolios: PortfoliosData[] = await Portfolios.find();
+  const allPortfolios: AllPortfoliosData[] = portfolios.map((portfolio: PortfoliosData) => ({
+    _id: portfolio._id,
+    title: portfolio.title,
+  }));
+
+  res.send(allPortfolios);
 });
 
-router.get('/:pid', (req: Request, res: Response) => {
-  const pid = req.params.pid;
-  const data: Portfolios = JSON.parse(fs.readFileSync('./doc/fakeData/portfolios-1.json', 'utf-8'));
-  console.log('data:', data);
-  res.send(data);
+router.get('/:id', async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const portfolio = await Portfolios.find({
+    _id: id
+  });
+
+  res.send(portfolio);
 });
 
-router.post('/', (req: Request, res: Response) => {
+router.post('/', async (
+  req: Request<{}, {}, PortfoliosData>,
+  res: Response
+) => {
   const data = req.body;
-  console.log('data.title:', data.title);
-  res.send(data)
+
+  const portfolio = await Portfolios.create({
+    title: data.title,
+    description: data.description,
+    cover_url: data.cover_url,
+    is_enabled: data.is_enabled,
+    photos: data.photos,
+  });
+
+  res.send(portfolio);
+});
+
+router.put('/:id', async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const data = req.body;
+
+  const portfolio = await Portfolios.findByIdAndUpdate({
+    _id: id,
+
+  }, {
+    title: data.title,
+    description: data.description,
+    cover_url: data.cover_url,
+    is_enabled: data.is_enabled,
+    photos: data.photos,
+  }, { new: true });
+
+  res.send(portfolio);
+});
+
+router.delete('/:id', async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const portfolio = await Portfolios.findByIdAndDelete({
+    _id: id,
+  });
+
+  res.send({
+    status: 'success',
+    portfolio
+  });
 });
 
 export default router;
