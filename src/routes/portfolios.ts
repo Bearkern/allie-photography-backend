@@ -67,14 +67,15 @@ router.put('/:id', async (req: Request, res: Response) => {
 
   const portfolio = await Portfolios.findByIdAndUpdate({
     _id: id,
-
   }, {
     title: data.title,
     description: data.description,
     cover_url: data.cover_url,
     is_enabled: data.is_enabled,
     photos: data.photos,
-  }, { new: true });
+  }, {
+    new: true
+  });
 
   res.send(portfolio);
 });
