@@ -7,6 +7,7 @@ import './connections';
 import indexRouter from './routes/index';
 import faqsRouter from './routes/faqs';
 import portfoliosRouter from './routes/portfolios';
+import packagesRouter from './routes/packages';
 
 const app = express();
 
@@ -18,8 +19,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/faqs', faqsRouter)
+app.use('/faqs', faqsRouter);
 app.use('/portfolios', portfoliosRouter);
+app.use('/package', packagesRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
