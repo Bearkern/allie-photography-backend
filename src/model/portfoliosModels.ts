@@ -9,7 +9,7 @@ const portfoliosSchema = new mongoose.Schema({
     type: String,
     required: [true, '作品集描述為必填'],
   },
-  cover_url: {
+  cover: {
     type: String,
     required: [true, '封面為必填'],
   },

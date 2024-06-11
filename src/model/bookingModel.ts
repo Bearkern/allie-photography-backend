@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const bookingSchema = new mongoose.Schema({
-  photoPackage: {
+  photo_package: {
     type: String,
     required: [true, '方案名稱為必填'],
   },
@@ -13,7 +13,7 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: [true, '性別為必填'],
   },
-  babyGender: {
+  baby_gender: {
     type: String,
     required: [true, '寶寶性別為必填'],
   },
@@ -36,11 +36,11 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: [true, '預約時間為必填'],
   },
-  availableTime: {
+  available_time: {
     type: String,
     required: [true, '可聯繫時間為必填'],
   },
-  availableWeek: {
+  available_week: {
     type: String,
     required: [true, '平假日為必填'],
   },

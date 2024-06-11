@@ -1,11 +1,11 @@
 import { Router, Request, Response } from 'express';
 import Portfolios from '../model/portfoliosModels';
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 const router = Router();
 
 type AllPortfoliosData = {
-  _id: ObjectId,
+  _id: Types.ObjectId,
   title: string,
 };
 
@@ -16,10 +16,10 @@ type PhotosData = {
 }
 
 type PortfoliosData = {
-  _id: ObjectId,
+  _id: Types.ObjectId,
   title: string,
   description: string,
-  cover_url: string,
+  cover: string,
   is_enabled: boolean,
   photos: PhotosData[],
 }
@@ -53,7 +53,7 @@ router.post('/', async (
   const portfolio = await Portfolios.create({
     title: data.title,
     description: data.description,
-    cover_url: data.cover_url,
+    cover: data.cover,
     is_enabled: data.is_enabled,
     photos: data.photos,
   });
@@ -70,7 +70,7 @@ router.put('/:id', async (req: Request, res: Response) => {
   }, {
     title: data.title,
     description: data.description,
-    cover_url: data.cover_url,
+    cover: data.cover,
     is_enabled: data.is_enabled,
     photos: data.photos,
   }, {

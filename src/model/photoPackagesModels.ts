@@ -33,6 +33,6 @@ const photoPackagesSchema = new mongoose.Schema({
   versionKey: false
 });
 
-const collectionName = 'photoPackages'
+const collectionName = 'photoPackages';
 const PhotoPackages = mongoose.model('photoPackages', photoPackagesSchema, collectionName);
 export default PhotoPackages;

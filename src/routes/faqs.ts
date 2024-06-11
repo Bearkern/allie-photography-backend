@@ -1,11 +1,11 @@
 import { Router, Request, Response } from 'express';
 import Faqs from '../model/faqsModels';
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 const router = Router();
 
 type FaqsData = {
-  _id: ObjectId,
+  _id: Types.ObjectId,
   category: string,
   question: string,
   answer: string,
@@ -61,11 +61,5 @@ router.delete('/:id', async (req: Request, res: Response) => {
     faqs,
   });
 });
-
-
-
-
-
-
 
 export default router;

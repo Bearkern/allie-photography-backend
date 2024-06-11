@@ -6,17 +6,17 @@ const router = Router();
 
 type BookingData = {
   _id: Types.ObjectId,
-  package: string,
+  photo_package: string,
   name: string,
   gender: string,
-  babyGender: string,
+  baby_gender: string,
   address: string,
   phone: string,
   email: string,
   date: string,
   time: string,
-  availableTime: string,
-  availableWeek: string,
+  available_time: string,
+  available_week: string,
   remark: string,
 }
 
@@ -30,17 +30,17 @@ router.post('/', async (req: Request, res: Response) => {
   const data = req.body;
 
   const booking = await Booking.create({
-    photoPackage: data.photoPackage,
+    photo_package: data.photo_package,
     name: data.name,
     gender: data.gender,
-    babyGender: data.babyGender,
+    baby_gender: data.baby_gender,
     address: data.address,
     phone: data.phone,
     email: data.email,
     date: data.date,
     time: data.time,
-    availableTime: data.availableTime,
-    availableWeek: data.availableWeek,
+    available_time: data.available_time,
+    available_week: data.available_week,
     remark: data.remark,
   });
 
