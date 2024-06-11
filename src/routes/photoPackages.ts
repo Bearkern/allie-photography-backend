@@ -1,11 +1,11 @@
 import { Router, Request, Response } from 'express';
 import PhotoPackages from "../model/photoPackagesModels";
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 
 const router = Router();
 
 type AllPhotoPackagesData = {
-  _id: ObjectId,
+  _id: Types.ObjectId,
   title: string,
   price: number,
   cover: string,
@@ -13,7 +13,7 @@ type AllPhotoPackagesData = {
 }
 
 type PhotoPackagesData = {
-  _id: ObjectId,
+  _id: Types.ObjectId,
   title: string,
   price: number,
   cover: string,
@@ -26,7 +26,15 @@ type PhotoPackagesData = {
 router.get('/', async (_, res: Response) => {
   const photoPackages = await PhotoPackages.find();
 
-  res.send(photoPackages);
+  const allPhotoPackages: AllPhotoPackagesData[] = photoPackages.map((photoPackage: PhotoPackagesData) => ({
+    _id: photoPackage._id,
+    title: photoPackage.title,
+    price: photoPackage.price,
+    cover: photoPackage.cover,
+    content: photoPackage.content,
+  }));
+
+  res.send(allPhotoPackages);
 });
 
 router.get('/:id', async (req: Request, res: Response) => {
