@@ -23,7 +23,7 @@ app.use('/', indexRouter);
 app.use('/faqs', faqsRouter);
 app.use('/portfolios', portfoliosRouter);
 app.use('/photoPackages', photoPackagesRouter);
-app.use('/booing', bookingRouter);
+app.use('/booking', bookingRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
