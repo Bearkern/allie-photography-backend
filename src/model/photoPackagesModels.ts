@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const packagesSchema = new mongoose.Schema({
+const photoPackagesSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, '方案名稱為必填'],
@@ -9,7 +9,7 @@ const packagesSchema = new mongoose.Schema({
     type: Number,
     required: [true, '價格為必填'],
   },
-  cover_url: {
+  cover: {
     type: String,
     required: [true, '封面為必填'],
   },
@@ -33,5 +33,6 @@ const packagesSchema = new mongoose.Schema({
   versionKey: false
 });
 
-const Packages = mongoose.model('Packages', packagesSchema);
-export default Packages;
+const collectionName = 'photoPackages'
+const PhotoPackages = mongoose.model('photoPackages', photoPackagesSchema, collectionName);
+export default PhotoPackages;
