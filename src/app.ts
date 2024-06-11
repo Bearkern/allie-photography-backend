@@ -8,6 +8,7 @@ import indexRouter from './routes/index';
 import faqsRouter from './routes/faqs';
 import portfoliosRouter from './routes/portfolios';
 import photoPackagesRouter from './routes/photoPackages';
+import bookingRouter from './routes/booking';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/', indexRouter);
 app.use('/faqs', faqsRouter);
 app.use('/portfolios', portfoliosRouter);
 app.use('/photoPackages', photoPackagesRouter);
+app.use('/booing', bookingRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {

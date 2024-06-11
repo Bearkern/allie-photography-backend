@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-const reservationSchema = new mongoose.Schema({
-  package: {
+const bookingSchema = new mongoose.Schema({
+  photoPackage: {
     type: String,
     required: [true, '方案名稱為必填'],
   },
@@ -51,5 +51,5 @@ const reservationSchema = new mongoose.Schema({
   versionKey: false
 });
 
-const Reservation = mongoose.model('Reservation', reservationSchema);
-export default Reservation;
+const Booking = mongoose.model('Booking', bookingSchema);
+export default Booking;
