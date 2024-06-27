@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
 const photoPackagesSchema = new mongoose.Schema({
+  package: {
+    type: String,
+    required: [true, '方案為必填'],
+  },
   title: {
     type: String,
     required: [true, '方案名稱為必填'],

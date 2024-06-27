@@ -6,6 +6,7 @@ const router = Router();
 
 type AllPhotoPackagesData = {
   _id: Types.ObjectId,
+  package: string,
   title: string,
   price: number,
   cover: string,
@@ -14,6 +15,7 @@ type AllPhotoPackagesData = {
 
 type PhotoPackagesData = {
   _id: Types.ObjectId,
+  package: string,
   title: string,
   price: number,
   cover: string,
@@ -28,6 +30,7 @@ router.get('/', async (_, res: Response) => {
 
   const allPhotoPackages: AllPhotoPackagesData[] = photoPackages.map((photoPackage: PhotoPackagesData) => ({
     _id: photoPackage._id,
+    package: photoPackage.package,
     title: photoPackage.title,
     price: photoPackage.price,
     cover: photoPackage.cover,
@@ -61,6 +64,7 @@ router.post('/', async (req: Request, res: Response) => {
   const data = req.body;
 
   const photoPackage = await PhotoPackages.create({
+    package: data.package,
     title: data.title,
     price: data.price,
     cover: data.cover,
@@ -80,6 +84,7 @@ router.put('/:id', async (req: Request, res: Response) => {
   const photoPackage = await PhotoPackages.findByIdAndUpdate({
     _id: id,
   }, {
+    package: data.package,
     title: data.title,
     price: data.price,
     cover: data.cover,
