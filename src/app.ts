@@ -3,6 +3,7 @@ import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import './connections';
+import cors from 'cors';
 
 import indexRouter from './routes/index';
 import faqsRouter from './routes/faqs';
@@ -18,6 +19,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors({
+  origin: 'http://localhost:3001'
+}))
 
 app.use('/', indexRouter);
 app.use('/faqs', faqsRouter);
