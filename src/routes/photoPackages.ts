@@ -43,9 +43,7 @@ router.get('/', async (_, res: Response) => {
 router.get('/:id', async (req: Request, res: Response) => {
   const id = req.params.id;
 
-  const photoPackage = await PhotoPackages.find({
-    _id: id,
-  });
+  const photoPackage = await PhotoPackages.findById(id);
 
   res.send(photoPackage);
 });
