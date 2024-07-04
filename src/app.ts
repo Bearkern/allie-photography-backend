@@ -10,6 +10,7 @@ import faqsRouter from './routes/faqs';
 import portfoliosRouter from './routes/portfolios';
 import photoPackagesRouter from './routes/photoPackages';
 import bookingRouter from './routes/booking';
+import photosRouter from './routes/photos'
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/faqs', faqsRouter);
 app.use('/portfolios', portfoliosRouter);
 app.use('/photoPackages', photoPackagesRouter);
 app.use('/booking', bookingRouter);
+app.use('/photos', photosRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
